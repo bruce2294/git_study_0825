@@ -1,12 +1,9 @@
 ﻿# git_study_0825
-깃 - 맨처음사용할때   
-<>이부분은 자신의 것으로 바꿔서 <> 없이 명령어를 줘야함
-
 git init
 
-git config --global user.name <bruce>
+git config --global user.name bruce
 
-git config --global user.email <obm2294@gmail.com>
+git config --global user.email obm2294@gmail.com
 
 ​
 
