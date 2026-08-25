@@ -1,7 +1,7 @@
 /* ==========================================================================
-   Apple Korea (apple.com/kr) Design System & Stylesheet
-   - Typography: SF Pro, Noto Sans KR, Apple SD Gothic Neo
-   - Theme: Sleek Dark / Clean Light, Glassmorphism, Micro-animations
+   Apple Korea (apple.com/kr) Pixel-Perfect Design System
+   - Typography: Apple SF Pro Display, SF Pro Text, Noto Sans KR
+   - High-Res Visual Layout & Animations
    ========================================================================== */
 
 :root {
@@ -18,19 +18,16 @@
     --color-text-sub: #6e6e73;
     
     /* Apple Blue & Accents */
-    --color-link-blue: #2997ff;
-    --color-btn-blue: #0071e3;
-    --color-btn-blue-hover: #0077ed;
-    --color-btn-dark: #1d1d1f;
-    --color-btn-dark-hover: #333336;
+    --color-link-blue: #0071e3;
+    --color-link-blue-hover: #0077ed;
+    --color-link-dark-theme: #2997ff;
     
     /* Glassmorphism Header */
-    --nav-bg: rgba(22, 22, 23, 0.8);
-    --nav-border: rgba(255, 255, 255, 0.15);
+    --nav-bg: rgba(22, 22, 23, 0.85);
+    --nav-border: rgba(255, 255, 255, 0.08);
     
     /* Spacing & Sizing */
     --nav-height: 44px;
-    --ribbon-height: 40px;
     --section-gap: 12px;
 }
 
@@ -48,7 +45,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+body.apple-homepage {
     font-family: var(--font-primary);
     background-color: var(--color-bg-white);
     color: var(--color-text-dark);
@@ -82,10 +79,10 @@ button {
     width: 100%;
     height: var(--nav-height);
     background-color: var(--nav-bg);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     z-index: 9999;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--nav-border);
 }
 
 .globalnav {
@@ -106,7 +103,7 @@ button {
     display: flex;
     align-items: center;
     color: rgba(255, 255, 255, 0.8);
-    transition: color 0.25s ease, transform 0.25s ease;
+    transition: color 0.25s ease, transform 0.2s ease;
 }
 
 .globalnav-logo:hover {
@@ -119,7 +116,7 @@ button {
     align-items: center;
     justify-content: space-between;
     flex: 1;
-    margin: 0 28px;
+    margin: 0 32px;
 }
 
 .globalnav-link {
@@ -139,14 +136,14 @@ button {
 .globalnav-tools {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 18px;
 }
 
 .globalnav-btn {
     display: flex;
     align-items: center;
     color: rgba(255, 255, 255, 0.8);
-    transition: color 0.25s ease, transform 0.25s ease;
+    transition: color 0.25s ease, transform 0.2s ease;
 }
 
 .globalnav-btn:hover {
@@ -167,7 +164,7 @@ button {
     width: 100%;
     height: 1.5px;
     background-color: rgba(255, 255, 255, 0.8);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 검색 오버레이 */
@@ -256,7 +253,7 @@ button {
 }
 
 .quick-links ul li a:hover {
-    color: var(--color-link-blue);
+    color: var(--color-link-dark-theme);
     transform: translateX(4px);
 }
 
@@ -283,7 +280,7 @@ button {
 }
 
 .ribbon-link {
-    color: var(--color-btn-blue);
+    color: var(--color-link-blue);
     font-weight: 500;
     transition: opacity 0.2s;
 }
@@ -301,7 +298,7 @@ button {
     justify-content: center;
     font-size: 14px;
     font-weight: 400;
-    padding: 8px 16px;
+    padding: 8px 18px;
     border-radius: 980px;
     letter-spacing: -0.01em;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -309,34 +306,34 @@ button {
 }
 
 .btn-primary {
-    background-color: var(--color-btn-blue);
+    background-color: var(--color-link-blue);
     color: #ffffff;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-btn-blue-hover);
+    background-color: var(--color-link-blue-hover);
     transform: scale(1.02);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--color-btn-blue);
-    border: 1px solid var(--color-btn-blue);
+    color: var(--color-link-blue);
+    border: 1px solid var(--color-link-blue);
 }
 
 .dark-theme .btn-secondary {
-    color: var(--color-link-blue);
-    border-color: var(--color-link-blue);
+    color: var(--color-link-dark-theme);
+    border-color: var(--color-link-dark-theme);
 }
 
 .btn-secondary:hover {
-    background-color: var(--color-btn-blue);
+    background-color: var(--color-link-blue);
     color: #ffffff;
     transform: scale(1.02);
 }
 
 .dark-theme .btn-secondary:hover {
-    background-color: var(--color-link-blue);
+    background-color: var(--color-link-dark-theme);
     color: #000000;
 }
 
@@ -352,32 +349,32 @@ button {
 .hero-section {
     position: relative;
     width: 100%;
-    min-height: 650px;
-    height: 80vh;
-    max-height: 820px;
+    height: calc(100vh - var(--nav-height) - 40px);
+    min-height: 620px;
+    max-height: 780px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 55px 20px 24px;
+    padding: 55px 20px 20px;
     text-align: center;
     overflow: hidden;
     margin-bottom: var(--section-gap);
 }
 
 .hero-section.dark-theme {
-    background: radial-gradient(circle at 50% 30%, #151516 0%, #000000 100%);
+    background-color: #000000;
     color: var(--color-text-light);
 }
 
 .hero-section.light-theme {
-    background: radial-gradient(circle at 50% 30%, #ffffff 0%, #f5f5f7 100%);
+    background-color: var(--color-bg-light);
     color: var(--color-text-dark);
 }
 
 .hero-content {
-    z-index: 2;
-    max-width: 780px;
+    z-index: 3;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -394,8 +391,8 @@ button {
     font-size: 28px;
     font-weight: 400;
     letter-spacing: -0.01em;
-    line-height: 1.14286;
-    margin-bottom: 16px;
+    line-height: 1.15;
+    margin-bottom: 14px;
 }
 
 .hero-section.dark-theme .hero-subhead {
@@ -411,221 +408,35 @@ button {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
-.hero-media-wrapper {
+.hero-image-box {
     position: relative;
     width: 100%;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.hero-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hero-img:hover {
+    transform: scale(1.02);
 }
 
 .hero-caption {
     font-size: 13px;
     color: var(--color-text-muted);
-    z-index: 2;
-}
-
-/* Hero 1: iPhone 16 Pro 비주얼 (Desert Titanium & Glowing Ring) */
-.iphone-pro-frame {
-    position: relative;
-    width: 290px;
-    height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pro-body-glow {
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    background: radial-gradient(circle, rgba(197, 160, 130, 0.35) 0%, rgba(200, 140, 100, 0.1) 50%, transparent 70%);
-    filter: blur(35px);
-    animation: pulse-glow 5s infinite alternate ease-in-out;
-}
-
-.titanium-edge {
-    position: relative;
-    width: 250px;
-    height: 360px;
-    border-radius: 46px;
-    background: linear-gradient(145deg, #c7a488, #524338, #a8846c);
-    padding: 5px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.3);
-    transition: transform 0.4s ease;
-}
-
-.titanium-edge:hover {
-    transform: translateY(-8px) scale(1.02);
-}
-
-.screen-display {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: #000000;
-    border-radius: 42px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.dynamic-island {
-    position: absolute;
-    top: 14px;
-    width: 75px;
-    height: 22px;
-    background-color: #000000;
-    border-radius: 20px;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.intelligence-indicator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.intelligence-gradient {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: conic-gradient(from 180deg at 50% 50%, #ff5252, #ff7a00, #ff007a, #7a00ff, #007aff, #00ffc4, #ff5252);
-    filter: blur(20px);
-    opacity: 0.85;
-    animation: rotate-gradient 8s linear infinite;
-}
-
-.intelligence-text {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    background: linear-gradient(90deg, #ff7a00, #ff007a, #007aff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Hero 2: iPhone 16 비주얼 (Color Dots & Camera Control) */
-.iphone-16-frame {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;
-}
-
-.color-showcase-circles {
-    display: flex;
-    gap: 16px;
-    padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(10px);
-}
-
-.color-circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.color-circle:hover {
-    transform: scale(1.2);
-}
-
-.color-circle.ultramarine { background: #3b5fa9; }
-.color-circle.teal { background: #407b7b; }
-.color-circle.pink { background: #dca7b6; }
-.color-circle.white { background: #f2f3f4; border: 1px solid #dcdcdc; }
-.color-circle.black { background: #32353a; }
-
-.camera-control-interface .pill-badge {
-    display: inline-block;
-    padding: 8px 20px;
-    background: linear-gradient(135deg, #1d1d1f, #333336);
-    color: #ffffff;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Hero 3: MacBook Pro 비주얼 (M4 Max Chip Display) */
-.macbook-frame {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.macbook-display {
-    position: relative;
-    width: 380px;
-    height: 240px;
-    background: #0d0d0e;
-    border: 8px solid #232326;
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.retina-notch {
-    position: absolute;
-    top: 0;
-    width: 70px;
-    height: 12px;
-    background: #232326;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
-
-.m4-chip-badge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, #1f1f24, #0a0a0c);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    box-shadow: 0 0 35px rgba(41, 151, 255, 0.4);
-    animation: float-chip 4s ease-in-out infinite alternate;
-}
-
-.m4-chip-badge .chip-title {
-    font-size: 20px;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.03em;
-}
-
-.m4-chip-badge .chip-sub {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--color-link-blue);
-    letter-spacing: 0.1em;
-}
-
-.macbook-keyboard-base {
-    width: 440px;
-    height: 14px;
-    background: linear-gradient(to bottom, #434346, #1c1c1e);
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9);
+    z-index: 3;
 }
 
 /* ==========================================================================
@@ -650,7 +461,7 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 50px 30px 40px;
+    padding: 50px 30px 30px;
     text-align: center;
     overflow: hidden;
     border-radius: 2px;
@@ -672,7 +483,7 @@ button {
 }
 
 .tile-content {
-    z-index: 2;
+    z-index: 3;
 }
 
 .logo-inline {
@@ -690,7 +501,7 @@ button {
     font-weight: 700;
     letter-spacing: 0.15em;
     color: #e30000;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     text-transform: uppercase;
 }
 
@@ -706,8 +517,8 @@ button {
     font-size: 19px;
     font-weight: 400;
     line-height: 1.25;
-    margin-bottom: 16px;
-    max-width: 400px;
+    margin-bottom: 14px;
+    max-width: 420px;
 }
 
 .tile-cta-group {
@@ -715,151 +526,59 @@ button {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
-.tile-visual {
+.tile-image-box {
     position: relative;
     width: 100%;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
-/* Watch Series 10 Visual */
-.watch-case-graphic {
-    width: 160px;
-    height: 195px;
-    background: #000000;
-    border: 4px solid #1c1c1e;
-    border-radius: 40px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.15);
+.tile-img {
+    max-width: 90%;
+    max-height: 300px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.tile-img:hover {
+    transform: scale(1.03);
+}
+
+.tile-image-box.center-flex {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.watch-screen-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-
-.watch-time {
-    font-size: 28px;
-    font-weight: 700;
-    color: #ffffff;
-    font-family: var(--font-display);
-}
-
-.activity-rings {
-    display: flex;
-    gap: 4px;
-}
-
-.activity-rings .ring {
-    width: 12px;
-    height: 12px;
+.trade-hero-graphic {
+    color: var(--color-link-blue);
+    padding: 30px;
     border-radius: 50%;
-}
-.ring.red { background-color: #fa114f; }
-.ring.green { background-color: #92e82a; }
-.ring.blue { background-color: #00d8d5; }
-
-/* iPad Tile Visual */
-.ipad-screen-frame {
-    width: 240px;
-    height: 170px;
-    background: #ffffff;
-    border: 5px solid #d2d2d7;
-    border-radius: 16px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pencil-pro-float {
-    background: linear-gradient(135deg, #1d1d1f, #434346);
-    color: #ffffff;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* AirPods Tile Visual */
-.airpods-case-render {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.acoustic-wave {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    border: 2px solid rgba(41, 151, 255, 0.6);
-    border-radius: 50%;
-    animation: ripple 2.5s infinite linear;
-}
-
-.acoustic-wave.wave-2 {
-    animation-delay: 1.25s;
-}
-
-/* Vision Pro Tile Visual */
-.vision-headset-art {
-    width: 260px;
-    height: 120px;
-    background: radial-gradient(ellipse at center, #1b233d 0%, #080a10 100%);
-    border-radius: 60px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 35px rgba(100, 150, 255, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.spatial-eyesight-lens {
-    width: 180px;
-    height: 70px;
-    background: linear-gradient(90deg, rgba(80, 120, 255, 0.4), rgba(200, 80, 255, 0.4));
-    border-radius: 40px;
-    filter: blur(10px);
-}
-
-/* Trade In Visual */
-.trade-card-circle {
-    width: 100px;
-    height: 100px;
     background-color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-btn-blue);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* Education Visual */
-.campus-badge {
+.campus-showcase-art {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    color: #1d1d1f;
+    gap: 12px;
 }
 
-.academic-crest {
-    font-size: 56px;
+.campus-showcase-art .cap-emoji {
+    font-size: 72px;
+}
+
+.campus-showcase-art .campus-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-text-dark);
 }
 
 /* ==========================================================================
@@ -890,7 +609,7 @@ button {
 }
 
 .tv-plus-logo .plus-sign {
-    color: var(--color-link-blue);
+    color: var(--color-link-dark-theme);
     margin-left: 2px;
 }
 
@@ -940,7 +659,7 @@ button {
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
-    opacity: 0.5;
+    opacity: 0.45;
     filter: brightness(0.7);
 }
 
@@ -950,18 +669,27 @@ button {
     transform: scale(1.04);
 }
 
-.card-bg {
+.card-bg-gradient {
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.severence-bg { background: linear-gradient(135deg, #102a43, #0b1a29), radial-gradient(circle at 80% 20%, #486581, transparent); }
-.morningshow-bg { background: linear-gradient(135deg, #482b18, #1c110a), radial-gradient(circle at 20% 80%, #9c4221, transparent); }
-.slowhorses-bg { background: linear-gradient(135deg, #243b2f, #0d1a14), radial-gradient(circle at 70% 30%, #4b785e, transparent); }
-.tedlasso-bg { background: linear-gradient(135deg, #1f3a60, #0a1728), radial-gradient(circle at 30% 30%, #eed12b, transparent); }
-.foundation-bg { background: linear-gradient(135deg, #2d1348, #0e0517), radial-gradient(circle at 60% 60%, #7e3af2, transparent); }
+.severence-art { background: linear-gradient(135deg, #091a2b, #1d3557), radial-gradient(circle at 80% 20%, #457b9d, transparent); }
+.morningshow-art { background: linear-gradient(135deg, #3d1e0d, #6b2d18), radial-gradient(circle at 20% 80%, #b85d36, transparent); }
+.slowhorses-art { background: linear-gradient(135deg, #1b2e24, #2d5a3f), radial-gradient(circle at 70% 30%, #528c68, transparent); }
+.tedlasso-art { background: linear-gradient(135deg, #172a45, #224263), radial-gradient(circle at 30% 30%, #dfb12c, transparent); }
+.foundation-art { background: linear-gradient(135deg, #240e3b, #441b70), radial-gradient(circle at 60% 60%, #9047d8, transparent); }
+
+.show-badge-icon {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: var(--font-display);
+}
 
 .card-overlay {
     position: absolute;
@@ -969,7 +697,7 @@ button {
     left: 0;
     width: 100%;
     padding: 24px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -978,7 +706,7 @@ button {
 .genre-badge {
     font-size: 11px;
     font-weight: 700;
-    color: var(--color-link-blue);
+    color: var(--color-link-dark-theme);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 4px;
@@ -1135,7 +863,7 @@ button {
 }
 
 .footer-shop-info a {
-    color: var(--color-btn-blue);
+    color: var(--color-link-blue);
 }
 
 .footer-shop-info a:hover {
@@ -1181,33 +909,9 @@ button {
 }
 
 /* ==========================================================================
-   애니메이션 키프레임
-   ========================================================================== */
-@keyframes pulse-glow {
-    0% { transform: scale(0.95); opacity: 0.5; }
-    100% { transform: scale(1.1); opacity: 0.9; }
-}
-
-@keyframes rotate-gradient {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes float-chip {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-8px); }
-}
-
-@keyframes ripple {
-    0% { transform: scale(0.8); opacity: 1; }
-    100% { transform: scale(2.2); opacity: 0; }
-}
-
-/* ==========================================================================
    반응형 미디어 쿼리 (Responsive Styles)
    ========================================================================== */
 @media (max-width: 833px) {
-    /* 모바일 글로벌 네비게이션 */
     .globalnav-list {
         display: none;
         position: fixed;
@@ -1251,16 +955,14 @@ button {
         transform: translateY(-4px) rotate(-45deg);
     }
 
-    /* 히어로 헤드라인 */
     .hero-headline {
-        font-size: 40px;
+        font-size: 38px;
     }
 
     .hero-subhead {
-        font-size: 21px;
+        font-size: 20px;
     }
 
-    /* Bento Grid (1열로 전환) */
     .bento-grid {
         grid-template-columns: 1fr;
     }
@@ -1269,7 +971,6 @@ button {
         height: 500px;
     }
 
-    /* 푸터 아코디언 */
     .footer-directory {
         grid-template-columns: 1fr;
         gap: 0;
@@ -1305,7 +1006,6 @@ button {
         display: block;
     }
 
-    /* TV+ 슬라이더 카드 폭 */
     .tv-card {
         width: 320px;
         height: 220px;
