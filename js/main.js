@@ -96,7 +96,13 @@ function initTvSlider() {
     let currentIndex = 0;
     let isPlaying = true;
     let autoPlayTimer = null;
-    const cardWidth = 540; // 카드 폭(520) + 갭(20)
+
+    function getCardWidth() {
+        if (!cards[0]) return 1004;
+        const style = window.getComputedStyle(track);
+        const gap = parseFloat(style.gap) || 24;
+        return cards[0].offsetWidth + gap;
+    }
 
     function updateSlider(index) {
         // 인덱스 범위 순환 처리
@@ -104,8 +110,8 @@ function initTvSlider() {
         if (index >= cards.length) index = 0;
         currentIndex = index;
 
-        // 트랙 이동
-        const offset = -(currentIndex * cardWidth);
+        // 트랙 이동 (동적 너비 기준)
+        const offset = -(currentIndex * getCardWidth());
         track.style.transform = `translateX(${offset}px)`;
 
         // 활성 카드 및 닷 업데이트

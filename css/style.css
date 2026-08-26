@@ -660,29 +660,29 @@ button {
 
 .tv-slider-track {
     display: flex;
-    gap: 20px;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    padding-left: calc(50% - 240px);
+    gap: 24px;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    padding-left: calc(50% - 490px);
 }
 
 .tv-card {
     position: relative;
-    width: 520px;
-    height: 300px;
+    width: 980px;
+    height: 550px;
     flex-shrink: 0;
-    border-radius: 18px;
+    border-radius: 24px;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
-    opacity: 0.45;
-    filter: brightness(0.7);
+    opacity: 0.4;
+    filter: brightness(0.65);
     background-color: #111;
 }
 
 .tv-card.active {
     opacity: 1;
     filter: brightness(1);
-    transform: scale(1.04);
+    transform: scale(1.02);
 }
 
 .tv-card-img {
@@ -696,11 +696,11 @@ button {
 }
 
 .tv-card-logo {
-    max-height: 40px;
-    max-width: 180px;
+    max-height: 54px;
+    max-width: 260px;
     object-fit: contain;
-    margin-bottom: 8px;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+    margin-bottom: 12px;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
 }
 
 .card-overlay {
@@ -708,8 +708,8 @@ button {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 24px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+    padding: 36px 40px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -717,25 +717,26 @@ button {
 }
 
 .genre-badge {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     color: var(--color-link-dark-theme);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .card-title {
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .card-desc {
-    font-size: 13px;
-    color: #d2d2d7;
-    margin-bottom: 12px;
-    line-height: 1.3;
+    font-size: 16px;
+    color: #e8e8ed;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    max-width: 600px;
 }
 
 .btn-stream {
@@ -1035,8 +1036,28 @@ button {
         display: block;
     }
 
+    .tv-slider-track {
+        padding-left: calc(50% - 43vw);
+        gap: 16px;
+    }
+
     .tv-card {
-        width: 320px;
-        height: 220px;
+        width: 86vw;
+        height: 48vw;
+        min-height: 240px;
+        border-radius: 16px;
+    }
+
+    .card-overlay {
+        padding: 20px;
+    }
+
+    .card-desc {
+        font-size: 13px;
+    }
+
+    .tv-card-logo {
+        max-height: 36px;
+        max-width: 160px;
     }
 }
