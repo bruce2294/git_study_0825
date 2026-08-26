@@ -356,7 +356,7 @@ button {
 .hero-section {
     position: relative;
     width: 100%;
-    height: 720px;
+    height: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -434,9 +434,9 @@ button {
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%) scale(1.35);
+    transform: translateX(-50%) scale(1.75);
     transform-origin: bottom center;
-    height: 580px;
+    height: 620px;
     width: auto;
     max-width: none;
     object-fit: contain;
@@ -445,7 +445,7 @@ button {
 }
 
 .hero-section:hover .hero-img {
-    transform: translateX(-50%) scale(1.38);
+    transform: translateX(-50%) scale(1.78);
 }
 
 .hero-caption {
@@ -1001,7 +1001,7 @@ button {
     }
 
     .hero-section {
-        height: 600px;
+        height: 640px;
         padding-top: 45px;
     }
 
@@ -1014,9 +1014,9 @@ button {
     }
 
     .hero-img {
-        transform: translateX(-50%) scale(1.3);
+        transform: translateX(-50%) scale(1.55);
         transform-origin: bottom center;
-        height: 440px;
+        height: 480px;
         width: auto;
         max-width: none;
     }
