@@ -356,7 +356,7 @@ button {
 .hero-section {
     position: relative;
     width: 100%;
-    height: 650px;
+    height: 692px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -435,10 +435,10 @@ button {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    height: 460px;
-    width: auto;
+    width: 3008px;
+    height: 580px;
     max-width: none;
-    object-fit: contain;
+    object-fit: cover;
     object-position: bottom center;
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -973,7 +973,7 @@ button {
     }
 
     .hero-section {
-        height: 520px;
+        height: 560px;
         padding-top: 45px;
     }
 
@@ -986,7 +986,9 @@ button {
     }
 
     .hero-img {
-        height: 340px;
+        width: 1800px;
+        height: 420px;
+        max-width: none;
     }
 
     .bento-grid {
