@@ -511,6 +511,34 @@ button {
     margin-bottom: 4px;
 }
 
+.apple-logo-svg {
+    display: inline-block;
+    vertical-align: -0.12em;
+    width: 0.9em;
+    height: 0.9em;
+    fill: currentColor;
+}
+
+.logo-inline .apple-logo-svg {
+    width: 28px;
+    height: 28px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.tv-plus-logo .apple-logo-svg {
+    width: 34px;
+    height: 34px;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+
+.home-icon .apple-logo-svg {
+    width: 14px;
+    height: 14px;
+    vertical-align: -2px;
+}
+
 .tile-series {
     font-size: 12px;
     font-weight: 700;
