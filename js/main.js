@@ -96,7 +96,7 @@ function initTvSlider() {
     let currentIndex = 0;
     let isPlaying = true;
     let autoPlayTimer = null;
-    const cardWidth = 500; // 카드 폭(480) + 갭(20)
+    const cardWidth = 540; // 카드 폭(520) + 갭(20)
 
     function updateSlider(index) {
         // 인덱스 범위 순환 처리

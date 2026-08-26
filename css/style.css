@@ -667,8 +667,8 @@ button {
 
 .tv-card {
     position: relative;
-    width: 480px;
-    height: 280px;
+    width: 520px;
+    height: 300px;
     flex-shrink: 0;
     border-radius: 18px;
     overflow: hidden;
@@ -676,6 +676,7 @@ button {
     transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
     opacity: 0.45;
     filter: brightness(0.7);
+    background-color: #111;
 }
 
 .tv-card.active {
@@ -684,26 +685,22 @@ button {
     transform: scale(1.04);
 }
 
-.card-bg-gradient {
+.tv-card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
+    object-position: center;
 }
 
-.severence-art { background: linear-gradient(135deg, #091a2b, #1d3557), radial-gradient(circle at 80% 20%, #457b9d, transparent); }
-.morningshow-art { background: linear-gradient(135deg, #3d1e0d, #6b2d18), radial-gradient(circle at 20% 80%, #b85d36, transparent); }
-.slowhorses-art { background: linear-gradient(135deg, #1b2e24, #2d5a3f), radial-gradient(circle at 70% 30%, #528c68, transparent); }
-.tedlasso-art { background: linear-gradient(135deg, #172a45, #224263), radial-gradient(circle at 30% 30%, #dfb12c, transparent); }
-.foundation-art { background: linear-gradient(135deg, #240e3b, #441b70), radial-gradient(circle at 60% 60%, #9047d8, transparent); }
-
-.show-badge-icon {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: rgba(255, 255, 255, 0.4);
-    font-family: var(--font-display);
+.tv-card-logo {
+    max-height: 40px;
+    max-width: 180px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
 }
 
 .card-overlay {
@@ -716,6 +713,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    z-index: 2;
 }
 
 .genre-badge {
