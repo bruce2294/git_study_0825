@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "main_img": "images/tv/tv_1.jpg",
+    "logo_img": "images/tv/tv_1_logo.png",
+    "texts": [
+      "드라마",
+      "욕망은 무죄"
+    ]
+  },
+  {
+    "id": 2,
+    "main_img": "images/tv/tv_2.jpg",
+    "logo_img": "images/tv/tv_2_logo.png",
+    "texts": [
+      "코미디",
+      "조나 힐 감독, 키아누 리브스 주연의 새로운 블랙 코미디"
+    ]
+  },
+  {
+    "id": 3,
+    "main_img": "images/tv/tv_3.jpg",
+    "logo_img": "images/tv/tv_3_logo.png",
+    "texts": [
+      "로맨스",
+      "저 너머에도 사랑은 존재할까?"
+    ]
+  },
+  {
+    "id": 4,
+    "main_img": "images/tv/tv_4.jpg",
+    "logo_img": "images/tv/tv_4_logo.png",
+    "texts": [
+      "어드벤처",
+      "새로운 위협"
+    ]
+  },
+  {
+    "id": 5,
+    "main_img": "images/tv/tv_5.jpg",
+    "logo_img": "images/tv/tv_5_logo.png",
+    "texts": [
+      "드라마",
+      "화성을 향한 인류의 새로운 골드러시가 시작된다"
+    ]
+  },
+  {
+    "id": 6,
+    "main_img": "images/tv/tv_6.jpg",
+    "logo_img": "images/tv/tv_6_logo.png",
+    "texts": [
+      "액션",
+      "달릴 준비 됐나?"
+    ]
+  },
+  {
+    "id": 7,
+    "main_img": "images/tv/tv_7.jpg",
+    "logo_img": "images/tv/tv_7_logo.png",
+    "texts": [
+      "드라마",
+      "우리 안에는 운명을 스스로 바꿀 용기가 있다"
+    ]
+  }
+]
