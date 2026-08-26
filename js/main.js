@@ -1,18 +1,159 @@
 /**
  * Apple Korea (apple.com/kr) JavaScript Interactive Logic
+ * - JSON Fetch & Dynamic Rendering (히어로, Bento 타일, Apple TV+ 데이터)
  * - 모바일 네비게이션 메뉴 토글
  * - 검색창 오버레이 및 키보드 접근성
  * - Apple TV+ 캐러셀 슬라이더 (자동 재생, 터치 스와이프, 인디케이터)
  * - 모바일 푸터 아코디언
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     initNavigation();
     initSearchOverlay();
-    initTvSlider();
     initFooterAccordion();
     initColorSwitchers();
+    
+    // JSON 데이터 비동기 로드 및 동적 렌더링
+    await loadProductData();
 });
+
+/**
+ * 0. JSON 데이터 로드 및 컴포넌트 렌더링
+ */
+async function loadProductData() {
+    try {
+        const response = await fetch('./data/products.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        renderHeroes(data.heroes);
+        renderBentoGrid(data.bentoTiles);
+        renderTvShows(data.tvShows);
+        
+        // 렌더링 완료 후 TV 슬라이더 인터랙션 초기화
+        initTvSlider();
+    } catch (error) {
+        console.error('Failed to load products.json:', error);
+    }
+}
+
+/**
+ * 히어로 섹션 동적 렌더링
+ */
+function renderHeroes(heroes) {
+    const container = document.getElementById('heroes-container');
+    if (!container || !heroes) return;
+
+    container.innerHTML = heroes.map(hero => `
+        <section class="hero-section ${hero.theme} ${hero.customClass}" id="${hero.id}">
+            <div class="hero-content">
+                <h2 class="hero-headline">${hero.headline}</h2>
+                <h3 class="hero-subhead">${hero.subhead}</h3>
+                ${hero.caption ? `<p class="hero-caption" style="margin-bottom:12px">${hero.caption}</p>` : ''}
+                <div class="hero-cta-group" ${hero.id === 'hero-3' ? 'style="margin-top:16px"' : ''}>
+                    <a href="${hero.links.learnMore}" class="btn btn-primary">더 알아보기</a>
+                    <a href="${hero.links.buy}" class="btn btn-secondary">구입하기</a>
+                </div>
+            </div>
+            <div class="hero-image-box">
+                <img src="${hero.image}" alt="${hero.alt}" class="hero-img img-contain">
+            </div>
+        </section>
+    `).join('');
+}
+
+/**
+ * Bento 그리드 타일 동적 렌더링
+ */
+function renderBentoGrid(tiles) {
+    const container = document.getElementById('bento-grid-container');
+    if (!container || !tiles) return;
+
+    const appleSvg = `<svg class="apple-logo-svg" viewBox="0 11 14 18" fill="currentColor" aria-hidden="true"><path d="m13.0729 17.6825a3.61 3.61 0 0 0 -1.7248 3.0365 3.5132 3.5132 0 0 0 2.1379 3.2223 8.394 8.394 0 0 1 -1.0948 2.2618c-.6816.9812-1.3943 1.9623-2.4787 1.9623s-1.3633-.63-2.613-.63c-1.2187 0-1.6525.6507-2.644.6507s-1.6834-.9089-2.4787-2.0243a9.7842 9.7842 0 0 1 -1.6628-5.2776c0-3.0984 2.014-4.7405 3.9969-4.7405 1.0535 0 1.9314.6919 2.5924.6919.63 0 1.6112-.7333 2.8092-.7333a3.7579 3.7579 0 0 1 3.1604 1.5802zm-3.7284-2.8918a3.5615 3.5615 0 0 0 .8469-2.22 1.5353 1.5353 0 0 0 -.031-.32 3.5686 3.5686 0 0 0 -2.3445 1.2084 3.4629 3.4629 0 0 0 -.8779 2.1585 1.419 1.419 0 0 0 .031.2892 1.19 1.19 0 0 0 .2169.0207 3.0935 3.0935 0 0 0 2.1586-1.1368z"></path></svg>`;
+
+    container.innerHTML = tiles.map(tile => {
+        let headerContent = '';
+        if (tile.hasLogo) {
+            headerContent = `<div class="logo-inline">${appleSvg}${tile.logoText}</div>`;
+            if (tile.isSeries) {
+                headerContent += `<h4 class="tile-series">${tile.seriesName}</h4>`;
+            }
+        } else {
+            headerContent = `<h3 class="tile-headline">${tile.headline}</h3>`;
+        }
+
+        let ctaContent = '';
+        if (tile.links.learnMoreText) {
+            ctaContent = `<a href="${tile.links.learnMore}" class="btn btn-primary">${tile.links.learnMoreText}</a>`;
+        } else {
+            ctaContent = `
+                <a href="${tile.links.learnMore}" class="btn btn-primary">더 알아보기</a>
+                <a href="${tile.links.buy}" class="btn btn-secondary">구입하기</a>
+            `;
+        }
+
+        let imageBoxContent = '';
+        if (tile.isGraphic) {
+            imageBoxContent = `
+                <div class="tile-image-box center-flex">
+                    <div class="trade-hero-graphic">
+                        <svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="currentColor" stroke-width="1.2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                        </svg>
+                    </div>
+                </div>
+            `;
+        } else {
+            imageBoxContent = `
+                <div class="tile-image-box">
+                    <img src="${tile.image}" alt="${tile.alt}" class="tile-img img-contain">
+                </div>
+            `;
+        }
+
+        return `
+            <div class="bento-tile ${tile.theme} ${tile.customClass}">
+                <div class="tile-content">
+                    ${headerContent}
+                    <p class="tile-subhead">${tile.subhead}</p>
+                    <div class="tile-cta-group">
+                        ${ctaContent}
+                    </div>
+                </div>
+                ${imageBoxContent}
+            </div>
+        `;
+    }).join('');
+}
+
+/**
+ * Apple TV+ 쇼케이스 동적 렌더링
+ */
+function renderTvShows(shows) {
+    const track = document.getElementById('tv-slider-track');
+    const dotsContainer = document.getElementById('slider-dots');
+    if (!track || !shows) return;
+
+    track.innerHTML = shows.map((show, idx) => `
+        <div class="tv-card ${idx === 0 ? 'active' : ''}" data-genre="${show.genre}">
+            <img src="${show.image}" alt="Apple TV+ 오리지널" class="tv-card-img">
+            <div class="card-overlay">
+                <img src="${show.logo}" alt="Show Logo" class="tv-card-logo">
+                <span class="genre-badge">${show.genre}</span>
+                <p class="card-desc">${show.desc}</p>
+                <button class="btn btn-stream">지금 스트리밍하기 <span class="play-icon">▶</span></button>
+            </div>
+        </div>
+    `).join('');
+
+    if (dotsContainer) {
+        dotsContainer.innerHTML = shows.map((_, idx) => `
+            <span class="dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>
+        `).join('');
+    }
+}
 
 /**
  * 1. 글로벌 네비게이션 및 모바일 메뉴 제어
@@ -242,3 +383,4 @@ function initColorSwitchers() {
         });
     });
 }
+
